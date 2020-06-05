@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class FirstScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    
+
 //    throw UnimplementedError();
   return  Material(
       color: Colors.blue,
@@ -18,6 +18,16 @@ class FirstScreen extends StatelessWidget{
         )
         ,)
   );
+//  return Center(
+//    child: Container(
+//      alignment: Alignment.center,
+//      color: Colors.deepPurple,
+//      width: 200.0,
+//      height: 100.0,
+//      margin: EdgeInsets.all(25.0),
+////      padding: ,
+//    ),
+//  );
   }
 }
 
