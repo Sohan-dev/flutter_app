@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -13,11 +14,18 @@ class FirstScreen extends StatelessWidget{
         child: Text(
           generateRandomNumber(),
           textDirection: TextDirection.ltr,
-          style: TextStyle(color: Colors.white,fontSize: 40.0),
+          style: TextStyle(
+              color: Colors.white,
+              fontSize: 40.0,
+            decoration: TextDecoration.none,
+            fontFamily: 'RobotoSlab',
+            fontWeight: FontWeight.w400
+          ),
           textAlign: TextAlign.center,
         )
         ,)
   );
+
 //  return Center(
 //    child: Container(
 //      alignment: Alignment.center,
@@ -35,5 +43,5 @@ String generateRandomNumber(){
   var random = Random();
   int luckyNumber = random.nextInt(10);
   print(luckyNumber);
-  return "The number is $luckyNumber";
+  return "The number is : $luckyNumber";
 }
