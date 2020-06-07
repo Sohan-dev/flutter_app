@@ -1,25 +1,40 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import './app_screen/first_screen.dart';
+import './app_screen/home_page.dart';
 
-void main(){
-  runApp(
+void main() =>                  // Fat arrow function...
+  runApp( MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home:  HomePage()
+  )
 
-    MaterialApp(
-      title: "My Flutter App",
-      home: Scaffold(
-        appBar: AppBar(title: Text("My First Flutter Application"),),
-        body: Material(
-          color: Colors.blue,
-          child:  Center(
-            child: Text(
-              "Hello Shubhankar",
-              textDirection: TextDirection.ltr,
-              style: TextStyle(color: Colors.white,fontSize: 40.0),
-              textAlign: TextAlign.center,
-            )
-            ,)
-        ),
-      ),
-    )
   );
-}
+
+// Declare class for Ui development
+//class MyFlutter extends StatelessWidget{
+//  @override
+//  Widget build(BuildContext context) {
+
+//    return
+//      MaterialApp(
+//        debugShowCheckedModeBanner: false,
+//        title: "My Flutter App",
+//        home: Scaffold(
+//          appBar: AppBar(
+//            title: Text(
+//              "My First Flutter Application",
+//                  style: TextStyle(
+//                decoration: TextDecoration.none,
+//                    fontFamily: 'RobotoSlab',
+//                    fontWeight: FontWeight.w500
+//            ),
+//          ),
+//          ),
+//          body: FirstScreen()
+//        ),
+//      );
+////    throw UnimplementedError();
+//  }
+//
+//}
