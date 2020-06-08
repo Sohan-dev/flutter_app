@@ -7,10 +7,10 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
- var image = Image.network(
-   "https://scontent.fccu5-1.fna.fbcdn.net/v/t31.0-8/22499072_823079017852697_3861854583865290888_o.jpg?_nc_cat=106&_nc_sid=19026a&_nc_ohc=vbdmpzhIL3oAX-Ilcbt&_nc_ht=scontent.fccu5-1.fna&oh=4f00e2c371ad02357f1d198d23a8b3f8&oe=5F03653D",
-   fit: BoxFit.fitHeight,
- );
+var image = Image.network(
+  "https://scontent.fccu5-1.fna.fbcdn.net/v/t31.0-8/22499072_823079017852697_3861854583865290888_o.jpg?_nc_cat=106&_nc_sid=19026a&_nc_ohc=vbdmpzhIL3oAX-Ilcbt&_nc_ht=scontent.fccu5-1.fna&oh=4f00e2c371ad02357f1d198d23a8b3f8&oe=5F03653D",
+  fit: BoxFit.fitHeight,
+);
 
 class _HomePageState extends State<HomePage> {
   String mainProfile =
@@ -33,72 +33,69 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-//  void _navigateToNextScreen(BuildContext context) {
-//    Navigator.of(context).push(MaterialPageRoute(builder: (context) => NewScreen()));
-//  }
+  // Navigate to new Screen
+  void _navigateToNextScreen(BuildContext context) {
+    Navigator.of(context).pop();
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => FirstScreen()));
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          children: <Widget>[
-            UserAccountsDrawerHeader(
-              accountName: Text("Shubhankar Koner"),
-              accountEmail: Text("skonar.asn@outlok.com"),
-              currentAccountPicture: GestureDetector(
-                onTap: () => Toast.show("This is current user", context,
-                    duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM),
-                child: CircleAvatar(
-                  backgroundImage: NetworkImage(mainProfile),
-                ),
-              ),
-              otherAccountsPictures: <Widget>[
-                GestureDetector(
-                  onTap: () => switchUser("second"),
+        drawer: Drawer(
+          child: ListView(
+            children: <Widget>[
+              UserAccountsDrawerHeader(
+                accountName: Text("Shubhankar Koner"),
+                accountEmail: Text("skonar.asn@outlok.com"),
+                currentAccountPicture: GestureDetector(
+                  onTap: () => Toast.show("This is current user", context,
+                      duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM),
                   child: CircleAvatar(
-                    backgroundImage: NetworkImage(otherProfile),
+                    backgroundImage: NetworkImage(mainProfile),
                   ),
                 ),
-              ],
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: NetworkImage(
-                          "https://media.istockphoto.com/photos/colorful-oil-painting-on-canvas-texture-picture-id941893050?k=6&m=941893050&s=612x612&w=0&h=fRo7MsXpwIjXqTstumSGnp_bmp-naINMQz9xvMSFMZ4="))),
-            ),
-            ListTile(
-              title: Text("First Page"),
-              trailing: Icon(Icons.pages),
-              onTap: () => {
-                Navigator.of(context).pop,
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => FirstScreen()))
-              },
-            ),
-            Divider(),
-            ListTile(
-              title: Text("Second Page"),
-              trailing: Icon(Icons.print),
-              onTap: () => print("In second page"),
-            ),
-            Divider(),
-            ListTile(
-              title: Text("Third Page"),
-              trailing: Icon(Icons.account_balance),
-              onTap: () => Navigator.of(context).pop(),
-            )
-          ],
+                otherAccountsPictures: <Widget>[
+                  GestureDetector(
+                    onTap: () => switchUser("second"),
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(otherProfile),
+                    ),
+                  ),
+                ],
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: NetworkImage(
+                            "https://media.istockphoto.com/photos/colorful-oil-painting-on-canvas-texture-picture-id941893050?k=6&m=941893050&s=612x612&w=0&h=fRo7MsXpwIjXqTstumSGnp_bmp-naINMQz9xvMSFMZ4="))),
+              ),
+              ListTile(
+                title: Text("First Page"),
+                trailing: Icon(Icons.pages),
+                onTap: () => _navigateToNextScreen(context) ,
+              ),
+              Divider(),
+              ListTile(
+                title: Text("Second Page"),
+                trailing: Icon(Icons.print),
+                onTap: () => print("In second page"),
+              ),
+              Divider(),
+              ListTile(
+                title: Text("Third Page"),
+                trailing: Icon(Icons.account_balance),
+                onTap: () => Navigator.of(context).pop(),
+              )
+            ],
+          ),
         ),
-      ),
-      appBar: AppBar(
-        title: Text("My First Flutter Application"),
-        backgroundColor: Colors.redAccent,
-      ),
-      body: Center(
-        child: image,
-      )
-
+        appBar: AppBar(
+          title: Text("My First Flutter Application"),
+          backgroundColor: Colors.redAccent,
+        ),
+        body: Center(
+          child: image,
+        )
 
 //      Center(
 //        child: Text(
@@ -109,6 +106,6 @@ class _HomePageState extends State<HomePage> {
 //              fontFamily: 'RobotoSlab'),
 //        ),
 //      ),
-    );
+        );
   }
 }
