@@ -2,11 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import './app_screen/first_screen.dart';
 import './app_screen/home_page.dart';
+import './app_screen/login_page.dart';
 
 void main() =>                  // Fat arrow function...
   runApp( MaterialApp(
     debugShowCheckedModeBanner: false,
-    home:  HomePage()
+    home:  LoginPage()
   )
 
   );

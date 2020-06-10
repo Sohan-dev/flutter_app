@@ -36,7 +36,8 @@ class _HomePageState extends State<HomePage> {
   // Navigate to new Screen
   void _navigateToNextScreen(BuildContext context) {
     Navigator.of(context).pop();
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => FirstScreen()));
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => FirstScreen()));
   }
 
   @override
@@ -72,7 +73,7 @@ class _HomePageState extends State<HomePage> {
               ListTile(
                 title: Text("First Page"),
                 trailing: Icon(Icons.pages),
-                onTap: () => _navigateToNextScreen(context) ,
+                onTap: () => _navigateToNextScreen(context),
               ),
               Divider(),
               ListTile(
