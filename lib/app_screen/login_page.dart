@@ -2,18 +2,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../Animation/FadeAnimation.dart';
 import 'package:http/http.dart' as http;
-
+import './home_page.dart';
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
       home: LoginPage(),
     ));
 
 class LoginPage extends StatelessWidget {
-
   var _formKey = GlobalKey<FormState>();
 
-
-
+  // Navigate to new Screen
+  void _navigateToNextScreen(BuildContext context) {
+    print('in navigate');
+    Navigator.of(context).pop();
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,11 +128,11 @@ class LoginPage extends StatelessWidget {
                                 decoration: InputDecoration(
                                     border: (InputBorder.none),
                                     hintText: "Password",
-                                    hintStyle:TextStyle(color: Colors.grey[400])
-                                ),
+                                    hintStyle:
+                                        TextStyle(color: Colors.grey[400])),
                                 // ignore: missing_return
-                                validator: (String value){
-                                  if(value.isEmpty){
+                                validator: (String value) {
+                                  if (value.isEmpty) {
                                     return "Please enter email ot phone number";
                                   }
                                 },
@@ -138,32 +141,38 @@ class LoginPage extends StatelessWidget {
                           ],
                         )),
                     SizedBox(height: 30),
-                    Container(
-                      height: 50,
-
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          gradient: LinearGradient(colors: [
-                            Color.fromRGBO(143, 148, 251, 1),
-                            Color.fromRGBO(143, 148, 251, 2)
-                          ])),
-                      child: Center(
-                        child: Text(
-                          "Login",
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
+                    InkWell(
+                      onTap: ()=>  Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage())),
+                      child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            gradient: LinearGradient(colors: [
+                              Color.fromRGBO(143, 148, 251, 1),
+                              Color.fromRGBO(143, 148, 251, 2)
+                            ])),
+                        child: Center(
+                          child: Text(
+                            "Login",
+                            style: TextStyle(
+                                color: Colors.white, fontWeight: FontWeight.bold),
+                          ),
                         ),
-                      ),
+                      )
                     ),
                     SizedBox(
                       height: 70,
                     ),
-                    Text(
-                      "Forgot Password ?",
-                      style: TextStyle(
-                          color: Color.fromRGBO(143, 148, 251, 1),
-                          fontWeight: FontWeight.bold),
+                    InkWell(
+                      onTap: ()=> print("Forgot password clicked"),
+                      child:Text(
+                        "Forgot Password ?",
+                        style: TextStyle(
+                            color: Color.fromRGBO(143, 148, 251, 1),
+                            fontWeight: FontWeight.bold),
+                      ) ,
                     )
+
                   ],
                 ),
               )
@@ -174,5 +183,3 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-
-
