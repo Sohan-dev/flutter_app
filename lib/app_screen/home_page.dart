@@ -20,7 +20,6 @@ class _HomePageState extends State<HomePage> {
 
   void switchUser(string) {
     print(string);
-
     if (string == "second") {
       Toast.show("This is second user", context,
           duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);

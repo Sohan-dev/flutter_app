@@ -12,12 +12,12 @@ void main() => runApp(MaterialApp(
 class LoginPage extends StatelessWidget {
   var _formKey = GlobalKey<FormState>();
 
-  // Navigate to new Screen
-  void _navigateToNextScreen(BuildContext context) {
-    print('in navigate');
-    Navigator.of(context).pop();
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => HomePage()));
+  TextEditingController emailController =  TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  void signIn(email,password){
+    print(email.text);
+    print(password.text);
   }
 
   @override
@@ -84,8 +84,9 @@ class LoginPage extends StatelessWidget {
                               "Login",
                               style: TextStyle(
                                   color: Colors.white,
+                                  fontFamily: 'Anton',
                                   fontSize: 40.0,
-                                  fontWeight: FontWeight.bold),
+                                  fontWeight: FontWeight.w600),
                             ),
                           )),
                     )
@@ -117,6 +118,7 @@ class LoginPage extends StatelessWidget {
                                       bottom:
                                           BorderSide(color: Colors.grey[100]))),
                               child: TextFormField(
+                                  controller: emailController,
                                 decoration: InputDecoration(
                                     border: (InputBorder.none),
                                     hintText: "Email or Phone number",
@@ -126,6 +128,9 @@ class LoginPage extends StatelessWidget {
                                 validator: (String value){
                                   if(value.isEmpty){
                                     return "Please enter email ot phone number";
+                                  }else{
+                                    var email = value;
+                                    print(email);
                                   }
                                 },
                               ),
@@ -133,6 +138,8 @@ class LoginPage extends StatelessWidget {
                             Container(
                               padding: EdgeInsets.all(8.0),
                               child: TextFormField(
+                                controller: passwordController,
+                                obscureText: true,
                                 decoration: InputDecoration(
                                     border: (InputBorder.none),
                                     hintText: "Password",
@@ -142,6 +149,8 @@ class LoginPage extends StatelessWidget {
                                 validator: (String value) {
                                   if (value.isEmpty) {
                                     return "Please enter password";
+                                  }else{
+                                    print(value);
                                   }
                                 },
                               ),
@@ -153,11 +162,12 @@ class LoginPage extends StatelessWidget {
                         onTap: () => {
                               if (_formKey.currentState.validate())
                                 {
-                                  print("Validated Button Clicked.."),
                                   Navigator.of(context).pop(),
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) => HomePage()))
-                                }
+                                }else{
+                                signIn(emailController,passwordController)
+                              }
                             },
                         child: Container(
                           height: 50,
