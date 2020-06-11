@@ -15,9 +15,13 @@ class LoginPage extends StatelessWidget {
   TextEditingController emailController =  TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  void signIn(email,password){
-    print(email.text);
-    print(password.text);
+//  void signIn(email,password){
+//    print(email.text);
+//    print(password.text);
+//  }
+
+   signIn(email, pass) async {
+     print(email);
   }
 
   @override
