@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../Animation/FadeAnimation.dart';
 import 'package:http/http.dart' as http;
 import './home_page.dart';
+import './forgot_password.dart';
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -194,7 +195,11 @@ class LoginPage extends StatelessWidget {
                       height: 70,
                     ),
                     InkWell(
-                      onTap: () => print("Forgot password clicked"),
+                      onTap: () => {
+                        Navigator.of(context).pop(),
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ForgotPassword()))
+                      },
                       child: Text(
                         "Forgot Password ?",
                         style: TextStyle(
