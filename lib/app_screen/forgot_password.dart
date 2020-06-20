@@ -3,35 +3,24 @@ import 'package:flutter/material.dart';
 import '../Animation/FadeAnimation.dart';
 import 'package:http/http.dart' as http;
 import './home_page.dart';
-import './forgot_password.dart';
 
 void main() => runApp(MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: LoginPage(),
-    ));
+  debugShowCheckedModeBanner: false,
+  home: ForgotPassword(),
+));
 
-class LoginPage extends StatelessWidget {
+class ForgotPassword extends StatelessWidget {
   var _formKey = GlobalKey<FormState>();
 
   TextEditingController emailController =  TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-
-//  void signIn(email,password){
-//    print(email.text);
-//    print(password.text);
-//  }
-
-   signIn(email, pass) async {
-     print(email);
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-//      appBar: AppBar(
-//        title: Text("Login"),
-//      ),
+      appBar: AppBar(
+        title: Text("Forgot Password"),
+      ),
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -48,7 +37,7 @@ class LoginPage extends StatelessWidget {
                     Positioned(
                       left: 30,
                       width: 80,
-                      height: 200,
+                      height: 160,
                       child: FadeAnimation(
                           1.2,
                           Container(
@@ -86,7 +75,7 @@ class LoginPage extends StatelessWidget {
                           1.6,
                           Center(
                             child: Text(
-                              "Login",
+                              "Forgot Password",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontFamily: 'Anton',
@@ -111,8 +100,7 @@ class LoginPage extends StatelessWidget {
                             BoxShadow(
                                 color: Color.fromRGBO(143, 148, 251, 2),
                                 blurRadius: 20.0,
-                                offset: Offset(0, 10)
-                            )
+                                offset: Offset(0, 10))
                           ],
                         ),
                         child: Column(
@@ -122,18 +110,18 @@ class LoginPage extends StatelessWidget {
                               decoration: BoxDecoration(
                                   border: Border(
                                       bottom:
-                                          BorderSide(color: Colors.grey[100]))),
+                                      BorderSide(color: Colors.grey[100]))),
                               child: TextFormField(
-                                  controller: emailController,
+                                controller: emailController,
                                 decoration: InputDecoration(
                                     border: (InputBorder.none),
                                     hintText: "Email or Phone number",
                                     hintStyle:
-                                        TextStyle(color: Colors.grey[400])),
+                                    TextStyle(color: Colors.grey[400])),
                                 // ignore: missing_return
                                 validator: (String value){
                                   if(value.isEmpty){
-                                    return "Please enter email ot phone number";
+                                    return "Please enter you registered email..";
                                   }else{
                                     var email = value;
                                     print(email);
@@ -141,40 +129,20 @@ class LoginPage extends StatelessWidget {
                                 },
                               ),
                             ),
-                            Container(
-                              padding: EdgeInsets.all(8.0),
-                              child: TextFormField(
-                                controller: passwordController,
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                    border: (InputBorder.none),
-                                    hintText: "Password",
-                                    hintStyle:
-                                        TextStyle(color: Colors.grey[400])),
-                                // ignore: missing_return
-                                validator: (String value) {
-                                  if (value.isEmpty) {
-                                    return "Please enter password";
-                                  }else{
-                                    print(value);
-                                  }
-                                },
-                              ),
-                            )
                           ],
                         )),
                     SizedBox(height: 30),
                     InkWell(
                         onTap: () => {
-                              if (_formKey.currentState.validate())
-                                {
-                                  Navigator.of(context).pop(),
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => HomePage()))
-                                }else{
-                                signIn(emailController,passwordController)
-                              }
-                            },
+                          if (_formKey.currentState.validate())
+                            {
+                              Navigator.of(context).pop(),
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => HomePage()))
+                            }else{
+//                            signIn(emailController,passwordController)
+                          }
+                        },
                         child: Container(
                           height: 50,
                           decoration: BoxDecoration(
@@ -185,7 +153,7 @@ class LoginPage extends StatelessWidget {
                               ])),
                           child: Center(
                             child: Text(
-                              "Login",
+                              "Send",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
@@ -195,19 +163,6 @@ class LoginPage extends StatelessWidget {
                     SizedBox(
                       height: 70,
                     ),
-                    InkWell(
-                      onTap: () => {
-                        Navigator.of(context).pop(),
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => ForgotPassword()))
-                      },
-                      child: Text(
-                        "Forgot Password ?",
-                        style: TextStyle(
-                            color: Color.fromRGBO(143, 148, 251, 1),
-                            fontWeight: FontWeight.bold),
-                      ),
-                    )
                   ],
                 ),
               )

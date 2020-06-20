@@ -2,17 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:toast/toast.dart';
-import './first_screen.dart';
+import './profile_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
-
-var image = Image.network(
-  "https://scontent.fccu5-1.fna.fbcdn.net/v/t31.0-8/22499072_823079017852697_3861854583865290888_o.jpg?_nc_cat=106&_nc_sid=19026a&_nc_ohc=vbdmpzhIL3oAX-Ilcbt&_nc_ht=scontent.fccu5-1.fna&oh=4f00e2c371ad02357f1d198d23a8b3f8&oe=5F03653D",
-  fit: BoxFit.fitHeight,
-);
 
 class _HomePageState extends State<HomePage> {
   String mainProfile =
@@ -38,13 +33,45 @@ class _HomePageState extends State<HomePage> {
   void _navigateToNextScreen(BuildContext context) {
     Navigator.of(context).pop();
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => FirstScreen()));
+        .push(MaterialPageRoute(builder: (context) => Profile()));
   }
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    int _currentIndex = 0;
     return Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                title: Text('Home'),
+                backgroundColor: Colors.blue
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.search),
+                title: Text('Search'),
+                backgroundColor: Colors.redAccent
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.camera),
+                title: Text('Camera'),
+                backgroundColor: Colors.cyanAccent
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.verified_user),
+                title: Text('Profile'),
+                backgroundColor: Colors.lightGreenAccent
+            )
+          ],
+          onTap: (index){
+            print(index);
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+        ),
         drawer: Drawer(
           child: ListView(
             children: <Widget>[
@@ -73,22 +100,28 @@ class _HomePageState extends State<HomePage> {
                             "https://media.istockphoto.com/photos/colorful-oil-painting-on-canvas-texture-picture-id941893050?k=6&m=941893050&s=612x612&w=0&h=fRo7MsXpwIjXqTstumSGnp_bmp-naINMQz9xvMSFMZ4="))),
               ),
               ListTile(
-                title: Text("First Page"),
-                trailing: Icon(Icons.pages),
+                title: Text("My Profile"),
+                trailing: Icon(Icons.account_circle),
                 onTap: () => _navigateToNextScreen(context),
               ),
               Divider(),
               ListTile(
-                title: Text("Second Page"),
-                trailing: Icon(Icons.print),
+                title: Text("Settings"),
+                trailing: Icon(Icons.settings),
                 onTap: () => print("In second page"),
               ),
               Divider(),
               ListTile(
-                title: Text("Third Page"),
-                trailing: Icon(Icons.account_balance),
+                title: Text("Help & Feedback"),
+                trailing: Icon(Icons.help),
                 onTap: () => Navigator.of(context).pop(),
-              )
+              ),
+              Divider(),
+              ListTile(
+                title: Text("Notifications"),
+                trailing: Icon(Icons.notifications_active),
+                onTap: () => print("In second page"),
+              ),
             ],
           ),
         ),
@@ -102,11 +135,10 @@ class _HomePageState extends State<HomePage> {
               Container(
                 height: size.height * .3,
                 decoration: BoxDecoration(
-                  image: DecorationImage(
-                    alignment: Alignment.topCenter,
-                    image: NetworkImage("https://cdn.pixabay.com/photo/2015/07/31/20/38/background-869586_1280.png")
-                  )
-                ),
+                    image: DecorationImage(
+                        alignment: Alignment.topCenter,
+                        image: NetworkImage(
+                            "https://cdn.pixabay.com/photo/2015/07/31/20/38/background-869586_1280.png"))),
               ),
               SafeArea(
                 child: Padding(
@@ -120,16 +152,28 @@ class _HomePageState extends State<HomePage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             CircleAvatar(
-                              radius:32,
-                              backgroundImage: NetworkImage("https://scontent.fccu5-1.fna.fbcdn.net/v/t1.0-9/92676300_1455177277976198_6097525075395739648_o.jpg?_nc_cat=101&_nc_sid=e3f864&_nc_ohc=1u8D7WF_HyIAX-TPISc&_nc_ht=scontent.fccu5-1.fna&oh=e91674e01c02e9d5cfdf829751b4cb72&oe=5F07D2B8"),
+                              radius: 32,
+                              backgroundImage: NetworkImage(
+                                  "https://scontent.fccu5-1.fna.fbcdn.net/v/t1.0-9/92676300_1455177277976198_6097525075395739648_o.jpg?_nc_cat=101&_nc_sid=e3f864&_nc_ohc=1u8D7WF_HyIAX-TPISc&_nc_ht=scontent.fccu5-1.fna&oh=e91674e01c02e9d5cfdf829751b4cb72&oe=5F07D2B8"),
                             ),
-                            SizedBox(width: 16,),
+                            SizedBox(
+                              width: 16,
+                            ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text('Shubhankar',style: TextStyle(fontSize: 20.0,fontFamily: 'RobotoSlab',fontWeight: FontWeight.w700),),
-                                Text('skonar.asn@outlook.com',style: TextStyle(fontSize: 15.0),)
+                                Text(
+                                  'Shubhankar',
+                                  style: TextStyle(
+                                      fontSize: 20.0,
+                                      fontFamily: 'RobotoSlab',
+                                      fontWeight: FontWeight.w700),
+                                ),
+                                Text(
+                                  'skonar.asn@outlook.com',
+                                  style: TextStyle(fontSize: 15.0),
+                                )
                               ],
                             )
                           ],
@@ -138,90 +182,144 @@ class _HomePageState extends State<HomePage> {
                       Expanded(
                         child: GridView.count(
                           crossAxisCount: 2,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
-                        primary: false,
-                        children: <Widget>[
-                          Card(
-                            elevation:4,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10,
+                          primary: false,
+                          children: <Widget>[
+                            Card(
+                              elevation: 4,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  SvgPicture.network(
+                                    "https://image.flaticon.com/icons/svg/1904/1904425.svg",
+                                    height: 128,
+                                  ),
+                                  Text(
+                                    'Personal Data',
+                                    style: TextStyle(
+                                        fontSize: 15.0,
+                                        fontFamily: 'RobotoSlab',
+                                        fontWeight: FontWeight.w700,
+                                        color: Color.fromRGBO(63, 63, 63, 1)),
+                                  )
+                                ],
+                              ),
                             ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                               SvgPicture.network("https://image.flaticon.com/icons/svg/1904/1904425.svg",height: 128,),
-                                Text('Personal Data',style: TextStyle(fontSize: 15.0,fontFamily: 'RobotoSlab',fontWeight: FontWeight.w700,color: Color.fromRGBO(63, 63, 63, 1)),)
-                              ],
+                            Card(
+                              elevation: 4,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  SvgPicture.network(
+                                    "https://image.flaticon.com/icons/svg/732/732200.svg",
+                                    height: 128,
+                                  ),
+                                  Text(
+                                    'Gmail',
+                                    style: TextStyle(
+                                        fontSize: 15.0,
+                                        fontFamily: 'RobotoSlab',
+                                        fontWeight: FontWeight.w700,
+                                        color: Color.fromRGBO(63, 63, 63, 1)),
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                          Card(
-                            elevation:4,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)
+                            Card(
+                              elevation: 4,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  SvgPicture.network(
+                                    "https://image.flaticon.com/icons/svg/228/228612.svg",
+                                    height: 128,
+                                  ),
+                                  Text(
+                                    'Personal Data',
+                                    style: TextStyle(
+                                        fontSize: 15.0,
+                                        fontFamily: 'RobotoSlab',
+                                        fontWeight: FontWeight.w700,
+                                        color: Color.fromRGBO(63, 63, 63, 1)),
+                                  )
+                                ],
+                              ),
                             ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                SvgPicture.network("https://image.flaticon.com/icons/svg/732/732200.svg",height: 128,),
-                                Text('Gmail',style: TextStyle(fontSize: 15.0,fontFamily: 'RobotoSlab',fontWeight: FontWeight.w700,color: Color.fromRGBO(63, 63, 63, 1)),)
-                              ],
+                            Card(
+                              elevation: 4,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  SvgPicture.network(
+                                    "https://image.flaticon.com/icons/svg/1312/1312139.svg",
+                                    height: 128,
+                                  ),
+                                  Text(
+                                    'FaceBook',
+                                    style: TextStyle(
+                                        fontSize: 15.0,
+                                        fontFamily: 'RobotoSlab',
+                                        fontWeight: FontWeight.w700,
+                                        color: Color.fromRGBO(63, 63, 63, 1)),
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                          Card(
-                            elevation:4,
-
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)
+                            Card(
+                              elevation: 4,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  SvgPicture.network(
+                                    "https://image.flaticon.com/icons/svg/785/785768.svg",
+                                    height: 128,
+                                  ),
+                                  Text(
+                                    'Phone',
+                                    style: TextStyle(
+                                        fontSize: 15.0,
+                                        fontFamily: 'RobotoSlab',
+                                        fontWeight: FontWeight.w700,
+                                        color: Color.fromRGBO(63, 63, 63, 1)),
+                                  )
+                                ],
+                              ),
                             ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                SvgPicture.network("https://image.flaticon.com/icons/svg/228/228612.svg",height: 128,),
-                                Text('Personal Data',style: TextStyle(fontSize: 15.0,fontFamily: 'RobotoSlab',fontWeight: FontWeight.w700,color: Color.fromRGBO(63, 63, 63, 1)),)
-                              ],
+                            Card(
+                              elevation: 4,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  SvgPicture.network(
+                                    "https://image.flaticon.com/icons/svg/733/733585.svg",
+                                    height: 128,
+                                  ),
+                                  Text(
+                                    'Personal Data',
+                                    style: TextStyle(
+                                        fontSize: 15.0,
+                                        fontFamily: 'RobotoSlab',
+                                        fontWeight: FontWeight.w700,
+                                        color: Color.fromRGBO(63, 63, 63, 1)),
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                          Card(
-                            elevation:4,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                SvgPicture.network("https://image.flaticon.com/icons/svg/1312/1312139.svg",height: 128,),
-                                Text('FaceBook',style: TextStyle(fontSize: 15.0,fontFamily: 'RobotoSlab',fontWeight: FontWeight.w700,color: Color.fromRGBO(63, 63, 63, 1)),)
-                              ],
-                            ),
-                          ),
-                          Card(
-                            elevation:4,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                SvgPicture.network("https://image.flaticon.com/icons/svg/785/785768.svg",height: 128,),
-                                Text('Phone',style: TextStyle(fontSize: 15.0,fontFamily: 'RobotoSlab',fontWeight: FontWeight.w700,color: Color.fromRGBO(63, 63, 63, 1)),)
-                              ],
-                            ),
-                          ),
-                          Card(
-                            elevation:4,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                SvgPicture.network("https://image.flaticon.com/icons/svg/733/733585.svg",height: 128,),
-                                Text('Personal Data',style: TextStyle(fontSize: 15.0,fontFamily: 'RobotoSlab',fontWeight: FontWeight.w700,color: Color.fromRGBO(63, 63, 63, 1)),)
-                              ],
-                            ),
-                          ),
-                        ],),
+                          ],
+                        ),
                       )
                     ],
                   ),
@@ -230,16 +328,6 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         )
-
-//      Center(
-//        child: Text(
-//          "This is home page",
-//          style: TextStyle(
-//              fontSize: 40.0,
-//              fontWeight: FontWeight.w300,
-//              fontFamily: 'RobotoSlab'),
-//        ),
-//      ),
         );
   }
 }
