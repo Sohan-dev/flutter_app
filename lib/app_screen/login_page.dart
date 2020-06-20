@@ -21,8 +21,17 @@ class LoginPage extends StatelessWidget {
 //    print(password.text);
 //  }
 
-   signIn(email, pass) async {
-     print(email);
+  void signIn(email, pass) async {
+    String url = 'http://192.168.1.103:5000/login';
+    http.post(url, headers: {
+      'Accept': 'application/json',
+    }, body: {
+      "email": email,
+      "password": pass
+    }).then((response) {
+      print(response.statusCode);
+      print(response.body);
+    });
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -73,9 +74,26 @@ class _Profilepage extends State<Profile> {
                     margin: EdgeInsets.all(20.0),
                     child: Text(
                       'Shubhankar Koner',
-                      style: TextStyle(color: Colors.white, fontSize: 30.0),
+                      style: TextStyle(color: Colors.white, fontSize: 30.0,fontWeight: FontWeight.w700),
                     ),
                   ),
+                  Container(
+                    alignment: Alignment.bottomLeft,
+                    margin: EdgeInsets.all(20.0),
+                    child: Text(
+                      'Address: House no 374,Amit bhawan,Sonarpatti road,Rambandh,Burnpur,713325',
+                      style: TextStyle(color: Colors.white, fontSize: 20.0),
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.bottomLeft,
+                    margin: EdgeInsets.all(20.0),
+                    child: Text(
+                      'Phone Number: 8514010072',
+                      style: TextStyle(color: Colors.white, fontSize: 20.0),
+                    ),
+
+                  )
                 ],
               ),
             ),
